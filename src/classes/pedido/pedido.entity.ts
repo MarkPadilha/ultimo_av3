@@ -25,7 +25,5 @@ export class PedidoEntity{
    @Column()
    prato: number;
  
-   @Column()
-   preco_total: number;
  }
 

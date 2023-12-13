@@ -11,19 +11,25 @@ import { CreatePedidoPratoDto } from '../pedido/dto/createPedidoPrato.dto';
 export class PedidoPratoService {
   constructor(
      @InjectRepository(PedidoPratoEntity)
-    private readonly pedidoPratoRepository: Repository<PedidoPratoEntity>,
-  ) {}
+    private readonly pedidoPratoRepository: Repository<PedidoPratoEntity>
+  ) {
+
+
+  }
   
   //create(@Body('nome_cliente')nomeCliente: string, @Body('numero_mesa') numeroMesa: number,
   //@Body('id') id:number): void {
 
  // }
-
-  async createPedidoPrato(createPedidoPratoDto: CreatePedidoPratoDto): Promise<PedidoPratoEntity> {
-    return await this.pedidoPratoRepository.save(this.pedidoPratoRepository.create());
+ async adicionarPedidoPrato(idPedido: number, idPrato: number): Promise<PedidoPratoEntity> {
+  const pedidoPrato = new PedidoPratoEntity();
+  pedidoPrato.pedido = { id: idPedido } as any;
+  pedidoPrato.prato = { id: idPrato } as any;
+  return await this.pedidoPratoRepository.save(pedidoPrato);
   }
 
-  //Buscar todos os resultados da tabela prato_pedido ====================================================
+
+ //Buscar todos os resultados da tabela prato_pedido ====================================================
   async realizarConsulta(): Promise<any[]> {
     try {
       const resultado = await this.pedidoPratoRepository

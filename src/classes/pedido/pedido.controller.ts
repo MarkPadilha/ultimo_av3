@@ -15,7 +15,7 @@ export class pedidoController {
   @Post('/post')
   async create(@Body() createPedidoDto: CreatePedidoDto){
     const createPedido =  this.pedidoService.createPedido(createPedidoDto)
-    return await createPedido ;
+    return await {message: "Pedido realizado"} ;
   }
 
 }
